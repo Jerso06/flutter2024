@@ -52,7 +52,7 @@ class MeusDados extends StatelessWidget {
           
           child: Padding(
           padding: EdgeInsets.fromLTRB(10,10,10,900), 
-          child: Text("Meu Pênis tem 33cm", style: TextStyle(color: Colors.black),),        
+          child: Text("Algo aleatório", style: TextStyle(color: Colors.black),),        
           ),
         ),
       ],)),
