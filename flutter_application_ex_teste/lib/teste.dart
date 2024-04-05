@@ -13,6 +13,6 @@ class Testando extends StatelessWidget {
         Text("Algo numero 1"),
         Text("Algo numero 1"),
       ],),),
-    )
+    );
   }
 }
