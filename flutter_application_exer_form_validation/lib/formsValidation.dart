@@ -63,6 +63,7 @@ class _MyValidatorState extends State<MyValidator> {
 
             TextFormField(
             controller: passController,
+            obscureText: true,
             decoration: InputDecoration(
                 border: OutlineInputBorder(borderRadius: BorderRadius.circular(10)),
                 filled: true,
@@ -73,6 +74,8 @@ class _MyValidatorState extends State<MyValidator> {
                 //no if pode ser o value! ou oq eu coloquei ai
                 if(passController.text.isEmpty){
                   return("O campo Senha não deve ser vazio");
+                }else if(passController.text.length<3){
+                  return("O campo Senha deve ter 3 ou mais caracteres");
                 }
                 return null;
               },
@@ -82,16 +85,18 @@ class _MyValidatorState extends State<MyValidator> {
 
             Text(conseguiu),
             ElevatedButton(onPressed: () {
+              if(chaveValidacao.currentState!.validate()){
               for(var verifica in pessoas){
                 if(userController.text == verifica.getUsername && passController.text == verifica.getPassword){
                   conseguiu = "Conectado com sucesso";
+                  break;
                 }else{
                   conseguiu = "Usuário ou senha invalidos";
                 }
               }
               setState(() {
                 
-              });
+              });}
             },
             style: ElevatedButton.styleFrom(
               backgroundColor: Colors.blue,
