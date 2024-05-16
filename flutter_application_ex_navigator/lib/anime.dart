@@ -1,6 +1,10 @@
 // ignore_for_file: prefer_const_constructors, prefer_const_literals_to_create_immutables
 
 import 'package:flutter/material.dart';
+import 'package:flutter_application_ex_navigator/akudama.dart';
+import 'package:flutter_application_ex_navigator/ansatsu.dart';
+import 'package:flutter_application_ex_navigator/mob.dart';
+import 'package:flutter_application_ex_navigator/temporadas.dart';
 
 class MyAnime extends StatefulWidget {
   const MyAnime({super.key});
@@ -10,6 +14,9 @@ class MyAnime extends StatefulWidget {
 }
 
 class _MyAnimeState extends State<MyAnime> {
+
+  List<Temporadas> listTemp = [];
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -17,6 +24,38 @@ class _MyAnimeState extends State<MyAnime> {
         title: Text("Animes Favoritos", style: TextStyle(color: Colors.white, fontSize: 20, fontWeight: FontWeight.bold),),
         centerTitle: true,
         backgroundColor: Colors.indigo,
+      ),
+
+      bottomNavigationBar: BottomAppBar(
+        height: 200,
+        color: Colors.indigo,
+        child: Row(mainAxisAlignment: MainAxisAlignment.spaceAround, children: [
+          
+          MouseRegion(
+            cursor: SystemMouseCursors.click,
+            child: GestureDetector(
+              onTap: () {
+                listTemp = [Temporadas("Assassination Classroom", 22), Temporadas("Assassination Classroom Second Season", 25)];
+                Navigator.push(context, MaterialPageRoute(builder: (context) => MyAnsatsu(listTemp)));
+              },child: Image.network("https://cdn.myanimelist.net/images/anime/5/75639.jpg", height: 140,),
+            ),),
+          MouseRegion(
+            cursor: SystemMouseCursors.click,
+            child: GestureDetector(
+              onTap: () {
+                listTemp = [Temporadas("Mob Psycho 100", 12), Temporadas("Mob Psycho 100 II", 13), Temporadas("Mob Psycho 100 III", 12)];
+                Navigator.push(context, MaterialPageRoute(builder: (context) => MyMob(listTemp),));
+              },child: Image.network("https://br.web.img3.acsta.net/c_310_420/pictures/20/11/12/14/25/3371142.jpg", height: 140,),
+            ),),
+          MouseRegion(
+            cursor: SystemMouseCursors.click,
+            child: GestureDetector(
+              onTap: () {
+                listTemp = [Temporadas("Akudama Drive", 12)];
+                Navigator.push(context, MaterialPageRoute(builder: (context) => MyAkudama(listTemp),));
+              }, child: Image.network("https://imgsrv.crunchyroll.com/cdn-cgi/image/format=auto,fit=contain,width=480,height=720,quality=85/catalog/crunchyroll/6ffaa454c90d50b7cbd380d66f9dcd96.jpe", height: 140,),
+            ),),
+        ],),
       ),
 
       body: Container(
@@ -30,9 +69,9 @@ class _MyAnimeState extends State<MyAnime> {
         child: Column(children: [
           Padding(padding: EdgeInsets.all(10)),
 
-          SizedBox(height: 40,),
+          SizedBox(height: 60,),
 
-          Image.network("https://image.spreadshirtmedia.net/image-server/v1/mp/products/T1459A839PA4459PT28D187144250W10000H4186/views/1,width=1200,height=630,appearanceId=839,backgroundColor=F2F2F2/anime-logo-sticker.jpg"),
+          Image.network("https://images.fineartamerica.com/images/artworkimages/medium/3/anime-manga-word-text-tony-rubino-transparent.png"),
       ],),),
     );
   }
