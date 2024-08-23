@@ -20,6 +20,7 @@ class _MyListViewState extends State<MyListView> {
         backgroundColor: Colors.blueAccent,
       ),
       body: Center(child: Column(children: [
+        Expanded(child:
         ListView.separated(
           shrinkWrap: true,
         separatorBuilder: (context, index) => Divider(thickness: 4,),
@@ -34,6 +35,7 @@ class _MyListViewState extends State<MyListView> {
               trailing: Text(index.toString())
           );
         },
+      ),
       ),
       ElevatedButton(onPressed: () {
         
