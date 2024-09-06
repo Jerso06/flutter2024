@@ -1,5 +1,5 @@
-// ignore_for_file: unused_import, prefer_const_constructors, prefer_const_literals_to_create_immutables, prefer_interpolation_to_compose_strings
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:http/http.dart' as http;
 import 'dart:convert';
 
@@ -11,14 +11,17 @@ class MyRequisicao extends StatefulWidget {
 }
 
 class _MyRequisicaoState extends State<MyRequisicao> {
+  
   String dadosApi = "Teste";
   var userId;
   var taskId;
   var title;
   var completed;
 
+  TextEditingController controllerText = TextEditingController();
+
   Future<void> fazerRequisicao() async {
-    var url = Uri.parse("https://jsonplaceholder.typicode.com/todos/120");
+    var url = Uri.parse("https://jsonplaceholder.typicode.com/todos/"+controllerText.text);
     http.Response response;
     response = await http.get(url);
     dadosApi = response.body;
@@ -34,6 +37,7 @@ class _MyRequisicaoState extends State<MyRequisicao> {
     });
     }
   }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -44,6 +48,19 @@ class _MyRequisicaoState extends State<MyRequisicao> {
       ),
       body: Center(child: Column(children: [
         SizedBox(height: 20,),
+
+        TextFormField(
+          controller: controllerText,
+          decoration: InputDecoration(
+            border: OutlineInputBorder(borderRadius: BorderRadius.circular(10)),
+            filled: true,
+            fillColor: Colors.white,
+            labelText: "Id",
+          ),
+        ),
+
+        SizedBox(height: 20,),
+
         ElevatedButton(onPressed: () {
           fazerRequisicao();
         }, child: Text("Fazer Requisição")),
